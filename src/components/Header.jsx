@@ -4,13 +4,13 @@ const Header = ({ searchTerm, setSearchTerm, toggleDarkMode, isDarkMode,users,se
     const [showSearch, setShowSearch] = useState(false);
 
   return (
-    <header className="w-full flex items-center justify-between px-10 py-5 border-b border-gray-300">
-      <div className="text-2xl font-bold dark:text-white">GitHub Explorer</div>
+    <header className="w-full flex items-center justify-between lg:px-10 px-4 lg:py-5 py-2 border-b border-gray-300">
+      <div className="lg:text-2xl text-xl font-bold dark:text-white">GitHub Explorer</div>
        <div className="flex items-center gap-4">
       <div className="flex items-center gap-2">
         {!showSearch &&<FiSearch onClick={() => setShowSearch(true)} className="text-gray-900 dark:text-white" size={20} />}
         {showSearch && (
-            <div className="flex items-center bg-white rounded-lg w-80 dark:bg-gray-800">
+            <div className="flex items-center relative bg-white rounded-lg lg:w-80 w-40 dark:bg-gray-800">
         <input
           type="text"
           placeholder="Search GitHub users..."
@@ -19,7 +19,7 @@ const Header = ({ searchTerm, setSearchTerm, toggleDarkMode, isDarkMode,users,se
           className="border-none outline-none placeholder:text-gray-500 p-1 w-full dark:text-white dark:bg-gray-800"
         />
         {showSearch && searchTerm && users.length > 0 && (
-  <div className="absolute top-14 w-80 bg-white dark:bg-gray-800 shadow-lg rounded-lg p-2 z-20">
+  <div className="absolute top-14 lg:w-80 w-40 bg-white truncate dark:bg-gray-800 shadow-lg rounded-lg p-2 z-20">
     {users.slice(0, 5).map((user) => (
       <div 
         key={user.id}

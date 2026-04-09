@@ -12,6 +12,8 @@ function App() {
   const {users} = useGithubusers(debouncedSearch);
   const [selectedUser, setSelectedUser] = useState(null);
   const {repos,loading} = useUserrepo(selectedUser?.login);
+  const [sortBy,setSortBy] = useState("");
+  const [language,setLanguage] = useState("");
  
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
@@ -28,7 +30,7 @@ function App() {
         users={users}
         setSelectedUser={setSelectedUser}
       />
-      <Profile selectedUser={selectedUser} repos={repos} loading={loading}/>
+      <Profile selectedUser={selectedUser} repos={repos} loading={loading} sortBy={sortBy} language={language} setSortBy={setSortBy} setLanguage={setLanguage}/>
     </div>
   );
 }
