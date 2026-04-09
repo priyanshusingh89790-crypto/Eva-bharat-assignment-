@@ -8,29 +8,29 @@ const Header = ({ searchTerm, setSearchTerm, toggleDarkMode, isDarkMode,users,se
       <div className="lg:text-2xl text-xl font-bold dark:text-white">GitHub Explorer</div>
        <div className="flex items-center gap-4">
       <div className="flex items-center gap-2">
-        {!showSearch &&<FiSearch onClick={() => setShowSearch(true)} className="text-gray-900 dark:text-white" size={20} />}
+        {!showSearch &&<FiSearch onClick={() => setShowSearch(true)} className="text-gray-900 dark:text-white cursor-pointer" size={20} />}
         {showSearch && (
-            <div className="flex items-center relative bg-white rounded-lg lg:w-80 w-40 dark:bg-gray-800">
+            <div className="flex items-center relative bg-white lg:w-80 rounded-lg w-40 dark:bg-gray-800">
         <input
           type="text"
           placeholder="Search GitHub users..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="border-none outline-none placeholder:text-gray-500 p-1 w-full dark:text-white dark:bg-gray-800"
+          className="border-none outline-none placeholder:text-gray-500 p-1 w-full rounded-lg dark:bg-white"
         />
         {showSearch && searchTerm && users.length > 0 && (
-  <div className="absolute top-14 lg:w-80 w-40 bg-white truncate dark:bg-gray-800 shadow-lg rounded-lg p-2 z-20">
+  <div className="absolute top-14 lg:w-80 w-40 bg-white truncate shadow-lg rounded-lg p-2 z-20">
     {users.slice(0, 5).map((user) => (
       <div 
         key={user.id}
         onClick={() => {setSelectedUser(user); setShowSearch(false); setSearchTerm("")}}
-        className="flex items-center gap-2 p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded cursor-pointer"
+        className="flex items-center gap-2 p-2 hover:bg-gray-100 dark:hover:bg-gray-100 rounded cursor-pointer"
       >
         <img
           src={user.avatar_url}
           className="w-8 h-8 rounded-full"
         />
-        <span className="text-gray-900 dark:text-white">
+        <span className="text-gray-900">
           {user.login}
         </span>
       </div>
