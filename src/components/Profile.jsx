@@ -1,4 +1,5 @@
 import RepoCard from "./Repocard";
+import UserProfile from "./UserProfile";
 const Profile = ({
   selectedUser,
   repos,
@@ -7,6 +8,10 @@ const Profile = ({
   sortBy,
   language,
   error,
+  users,
+  setSelectedUser,
+  isSearchSubmitted,
+  setSearchSubmitted,
 }) => {
   let displayRepos = [...repos];
 
@@ -21,7 +26,7 @@ const Profile = ({
   if (sortBy === "forks") {
     displayRepos.sort((a, b) => b.forks_count - a.forks_count);
   }
-  if (!selectedUser)
+  if (!selectedUser && !isSearchSubmitted)
     return (
       <div className="flex items-center justify-center absolute top-1/3 text-gray-700 dark:text-gray-400">
         <p className="lg:text-lg md:text-md text-sm dark:text-white"> 🔍 Search for a GitHub user to get started</p>
@@ -37,18 +42,26 @@ const Profile = ({
       {error && (
         <p className="text-red-500">Something went wrong. Please try again.</p>
       )}
-      <div className="flex flex-col bg-white dark:bg-gray-800 lg:p-8 p-4 rounded-lg shadow-lg w-full border border-gray-300 dark:border-gray-700 items-center gap-4">
-        <img
-          src={selectedUser.avatar_url}
-          className="lg:w-40 lg:h-40 w-20 h-20 rounded-full"
-        />
-        <h1 className="lg:text-2xl text-xl font-bold dark:text-white">
-          {selectedUser.login}
-        </h1>
+      {isSearchSubmitted && !selectedUser && users.length > 0 && (
+  <div className="p-6 flex flex-col w-full gap-4">
+    {users.map((user) => (
+      <div
+        key={user.id}
+        onClick={() => {setSelectedUser(user); setSearchSubmitted(false);}}
+        className="bg-white dark:bg-gray-800 p-4 flex items-center gap-4 rounded-lg shadow cursor-pointer"
+      >
+        <img src={user.avatar_url} className="w-16 h-16 rounded-full" />
+        <p className="text-gray-900 dark:text-white">
+          {user.login}
+        </p>
       </div>
-      <div className="w-full">
+    ))}
+  </div>
+)}
+     {selectedUser && <UserProfile selectedUser={selectedUser}/>}
+      <div className="w-full lg:gap-8 gap-4 flex flex-col">
         <div className="flex justify-end items-end w-full flex-col gap-4">
-          <select
+         {selectedUser && (<select
             value={language}
             onChange={(e) => setLanguage(e.target.value)}
             className="lg:p-2 p-1 rounded border dark:bg-gray-600 bg-white border-gray-300 dark:border-gray-700 dark:text-white"
@@ -60,7 +73,9 @@ const Profile = ({
                 {lang}
               </option>
             ))}
-          </select>
+          </select>)}
+          </div>
+          <>
           {loading ? (
             <p className="text-center">Loading...</p>
           ) : displayRepos.length === 0 ? (
@@ -74,8 +89,9 @@ const Profile = ({
               ))}
             </div>
           )}
-        </div>
+        </>
       </div>
+
     </div>
   );
 };

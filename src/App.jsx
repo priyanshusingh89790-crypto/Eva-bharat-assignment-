@@ -14,6 +14,8 @@ function App() {
   const {repos,loading} = useUserrepo(selectedUser?.login);
   const [sortBy,setSortBy] = useState("");
   const [language,setLanguage] = useState("");
+  const [isSearchSubmitted, setSearchSubmitted] = useState(false);
+
  
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
@@ -29,8 +31,19 @@ function App() {
         isDarkMode={isDarkMode}
         users={users}
         setSelectedUser={setSelectedUser}
+        setSearchSubmitted={setSearchSubmitted}
       />
-      <Profile selectedUser={selectedUser} repos={repos} loading={loading} sortBy={sortBy} language={language} setSortBy={setSortBy} setLanguage={setLanguage}/>
+      <Profile selectedUser={selectedUser} 
+      repos={repos} 
+      loading={loading} 
+      sortBy={sortBy} 
+      language={language} 
+      setSortBy={setSortBy} 
+      setLanguage={setLanguage} 
+      isSearchSubmitted={isSearchSubmitted}
+      users={users}
+      setSelectedUser={setSelectedUser}/>
+      
     </div>
   );
 }

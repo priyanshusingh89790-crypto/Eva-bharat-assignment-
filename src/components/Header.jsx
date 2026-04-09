@@ -1,6 +1,6 @@
 import { FiSearch, FiMoon, FiSun } from "react-icons/fi";
 import {useState} from "react";
-const Header = ({ searchTerm, setSearchTerm, toggleDarkMode, isDarkMode,users,setSelectedUser}) => {
+const Header = ({ searchTerm, setSearchTerm, toggleDarkMode, isDarkMode,users,setSelectedUser,setSearchSubmitted}) => {
     const [showSearch, setShowSearch] = useState(false);
 
   return (
@@ -15,15 +15,22 @@ const Header = ({ searchTerm, setSearchTerm, toggleDarkMode, isDarkMode,users,se
           type="text"
           placeholder="Search GitHub users..."
           value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="border-none outline-none placeholder:text-gray-500 p-1 w-full rounded-lg dark:bg-white"
+          onChange={(e) => {setSearchTerm(e.target.value);setSearchSubmitted(false);}} 
+          onKeyDown={(e)=>{
+            if(e.key === "Enter"){
+                setSearchSubmitted(true);
+                setShowSearch(false);
+                setSelectedUser(null);
+            }
+          }}
+          className="border-none placeholder:text-gray-500  px-2 py-1 w-full rounded-lg dark:bg-white"
         />
         {showSearch && searchTerm && users.length > 0 && (
   <div className="absolute top-14 lg:w-80 w-40 bg-white truncate shadow-lg rounded-lg p-2 z-20">
     {users.slice(0, 5).map((user) => (
       <div 
         key={user.id}
-        onClick={() => {setSelectedUser(user); setShowSearch(false); setSearchTerm("")}}
+        onClick={() => {setSelectedUser(user); setShowSearch(false); setSearchTerm("");setSearchSubmitted(false);}}
         className="flex items-center gap-2 p-2 hover:bg-gray-100 dark:hover:bg-gray-100 rounded cursor-pointer"
       >
         <img
