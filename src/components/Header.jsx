@@ -30,7 +30,7 @@ const Header = ({ searchTerm, setSearchTerm, toggleDarkMode, isDarkMode,users,se
           src={user.avatar_url}
           className="w-8 h-8 rounded-full"
         />
-        <span className="text-gray-900">
+        <span className="text-gray-900 ">
           {user.login}
         </span>
       </div>

@@ -1,6 +1,6 @@
 const RepoCard = ({ repo }) => {
   return (
-    <div className="flex flex-col p-4 w-full bg-gray-50 border border-gray-200 dark:border-gray-700 dark:bg-gray-600 hover:bg-white dark:hover:bg-gray-700 rounded-lg cursor-pointer">
+    <div className="flex flex-col p-4 w-full bg-gray-50 border truncate border-gray-200 dark:border-gray-700 dark:bg-gray-600 hover:bg-white dark:hover:bg-gray-700 rounded-lg cursor-pointer">
       
       <h1 className="lg:text-lg text-sm dark:text-white text-wrap">
         {repo.name}
