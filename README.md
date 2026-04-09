@@ -4,6 +4,9 @@ A React.js application that allows users to search GitHub profiles and explore t
 
 ---
 
+## Live Demo
+https://hilarious-faun-5d026a.netlify.app/
+
 ## Features
 
 * Search GitHub users
@@ -43,7 +46,7 @@ A React.js application that allows users to search GitHub profiles and explore t
 
 ```bash
 git https://github.com/priyanshusingh89790-crypto/Eva-bharat-assignment-
-cd Eva-bharat-assignment-
+cd github-explorer
 ```
 
 2. Install dependencies
@@ -86,22 +89,6 @@ src/
 * Separation of concerns (UI vs logic)
 * Reusable components
 * Conditional rendering (loading, error, empty states)
-
----
-
-## Known Limitations
-
-* GitHub API rate limiting (without authentication)
-* No pagination implemented (optional improvement)
-
----
-
-## Future Improvements
-
-* Pagination / Infinite Scroll
-* Bookmark repositories (localStorage)
-* Better UI animations
-* Keyboard navigation for search suggestions
 
 ---
 
